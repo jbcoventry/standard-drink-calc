@@ -13,12 +13,20 @@ function UserInput({ data, setData }: UserInputProps) {
     <>
       <label>
         Volume:
-        <input name="volume" value={data.volume} onChange={handleChange} />
+        <input
+          type="number"
+          name="volume"
+          inputMode="decimal"
+          value={data.volume}
+          onChange={handleChange}
+        />
       </label>
       <label>
         Percentage:
         <input
+          type="number"
           name="percentage"
+          inputMode="decimal"
           value={data.percentage}
           onChange={handleChange}
         />
