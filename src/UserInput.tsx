@@ -1,23 +1,35 @@
+import Total from "./Total";
+
 type UserInputProps = {
-  data: { volume: number; percentage: number };
+  data: { id: string; volume: number; percentage: number }[];
   setData: React.Dispatch<
-    React.SetStateAction<{ volume: number; percentage: number }>
+    React.SetStateAction<{ id: string; volume: number; percentage: number }[]>
   >;
+  currentDrink: { id: string; volume: number; percentage: number };
 };
 
-function UserInput({ data, setData }: UserInputProps) {
+function UserInput({ data, setData, currentDrink }: UserInputProps) {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setData(
+      data.map((drink) => {
+        if (drink.id === currentDrink.id) {
+          return { ...drink, [e.target.name]: e.target.value };
+        } else {
+          return drink;
+        }
+      })
+    );
   }
+
   return (
-    <>
+    <div id={currentDrink.id}>
       <label>
         Volume:
         <input
           type="number"
           name="volume"
           inputMode="decimal"
-          value={data.volume}
+          value={currentDrink.volume}
           onChange={handleChange}
         />
       </label>
@@ -27,11 +39,15 @@ function UserInput({ data, setData }: UserInputProps) {
           type="number"
           name="percentage"
           inputMode="decimal"
-          value={data.percentage}
+          value={currentDrink.percentage}
           onChange={handleChange}
         />
       </label>
-    </>
+      <Total
+        percentage={currentDrink.percentage}
+        volume={currentDrink.volume}
+      />
+    </div>
   );
 }
 

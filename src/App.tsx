@@ -1,17 +1,18 @@
 import { useState } from "react";
 import UserInput from "./UserInput";
-import Total from "./Total";
 
 function App() {
-  const [data, setData] = useState({ volume: 10, percentage: 50 });
+  const [data, setData] = useState<
+    { id: string; volume: number; percentage: number }[]
+  >([
+    { id: "idgoeshere", volume: 1, percentage: 2 },
+    { id: "anotherid", volume: 3, percentage: 4 },
+  ]);
+  const inputFields = data.map((obj) => (
+    <UserInput data={data} setData={setData} currentDrink={obj} key={obj.id} />
+  ));
 
-  return (
-    <>
-      <h1>Standard Drinks Calculator</h1>
-      <UserInput {...{ data, setData }} />
-      <Total volume={data.volume} percentage={data.percentage} />
-    </>
-  );
+  return <>{inputFields}</>;
 }
 
 export default App;
