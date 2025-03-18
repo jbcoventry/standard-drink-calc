@@ -1,4 +1,4 @@
-import Total from "./Total";
+import total from "./total";
 
 type UserInputProps = {
   data: { id: string; volume: number; percentage: number }[];
@@ -43,10 +43,9 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
           onChange={handleChange}
         />
       </label>
-      <Total
-        percentage={currentDrink.percentage}
-        volume={currentDrink.volume}
-      />
+      <label>
+        Total: {total(currentDrink.volume, currentDrink.percentage)}
+      </label>
     </div>
   );
 }

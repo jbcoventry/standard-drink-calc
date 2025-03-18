@@ -1,5 +1,6 @@
 import { useState } from "react";
 import UserInput from "./UserInput";
+import total from "./total";
 
 function App() {
   const [data, setData] = useState<
@@ -11,8 +12,17 @@ function App() {
   const inputFields = data.map((obj) => (
     <UserInput data={data} setData={setData} currentDrink={obj} key={obj.id} />
   ));
+  const grandTotal = data.reduce(
+    (acc, current) => acc + total(current.volume, current.percentage),
+    0
+  );
 
-  return <>{inputFields}</>;
+  return (
+    <>
+      {inputFields}
+      <label>Grand Total: {grandTotal}</label>
+    </>
+  );
 }
 
 export default App;
