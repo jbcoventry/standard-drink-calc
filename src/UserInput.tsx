@@ -9,6 +9,18 @@ type UserInputProps = {
 };
 
 function UserInput({ data, setData, currentDrink }: UserInputProps) {
+  function handleSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    setData(
+      data.map((drink) => {
+        if (drink.id === currentDrink.id) {
+          return { ...drink, [e.target.name]: "" };
+        } else {
+          return drink;
+        }
+      })
+    );
+  }
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setData(
       data.map((drink) => {
@@ -30,6 +42,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
           name="volume"
           inputMode="decimal"
           value={currentDrink.volume}
+          onSelect={handleSelect}
           onChange={handleChange}
         />
       </label>
@@ -40,6 +53,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
           name="percentage"
           inputMode="decimal"
           value={currentDrink.percentage}
+          onSelect={handleSelect}
           onChange={handleChange}
         />
       </label>

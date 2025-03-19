@@ -5,10 +5,7 @@ import total from "./total";
 function App() {
   const [data, setData] = useState<
     { id: string; volume: number; percentage: number }[]
-  >([
-    { id: "idgoeshere", volume: 1, percentage: 2 },
-    { id: "anotherid", volume: 3, percentage: 4 },
-  ]);
+  >([{ id: `${crypto.randomUUID()}`, volume: 0, percentage: 0 }]);
   const inputFields = data.map((obj) => (
     <UserInput data={data} setData={setData} currentDrink={obj} key={obj.id} />
   ));
@@ -19,6 +16,30 @@ function App() {
 
   return (
     <>
+      <button
+        onClick={() => {
+          setData([
+            ...data,
+            { id: crypto.randomUUID(), volume: 0, percentage: 0 },
+          ]);
+        }}
+      >
+        Add
+      </button>
+      <button
+        onClick={() => {
+          setData(data.filter((item) => item.percentage || item.volume));
+        }}
+      >
+        clean
+      </button>
+      <button
+        onClick={() => {
+          setData([{ id: `${crypto.randomUUID()}`, volume: 0, percentage: 0 }]);
+        }}
+      >
+        clear
+      </button>
       {inputFields}
       <label>Grand Total: {grandTotal}</label>
     </>
