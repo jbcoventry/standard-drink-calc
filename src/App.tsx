@@ -27,7 +27,10 @@ function App() {
         <button
           className="bg-green-300 rounded-sm cursor-pointer hover:bg-green-400 p-2 m-2 w-16"
           onClick={() => {
-            setData([...data, { id: Date.now(), volume: 0, percentage: 0 }]);
+            setData([
+              ...data,
+              { id: `${Date.now()}`, volume: 0, percentage: 0 },
+            ]);
           }}
         >
           Add

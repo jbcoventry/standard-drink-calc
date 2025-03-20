@@ -1,11 +1,11 @@
 import total from "./total";
 
 type UserInputProps = {
-  data: { id: number; volume: number; percentage: number }[];
+  data: { id: string; volume: number; percentage: number }[];
   setData: React.Dispatch<
-    React.SetStateAction<{ id: number; volume: number; percentage: number }[]>
+    React.SetStateAction<{ id: string; volume: number; percentage: number }[]>
   >;
-  currentDrink: { id: number; volume: number; percentage: number };
+  currentDrink: { id: string; volume: number; percentage: number };
 };
 
 function UserInput({ data, setData, currentDrink }: UserInputProps) {
