@@ -1,11 +1,11 @@
 import total from "./total";
 
 type UserInputProps = {
-  data: { id: string; volume: number; percentage: number }[];
+  data: { id: number; volume: number; percentage: number }[];
   setData: React.Dispatch<
-    React.SetStateAction<{ id: string; volume: number; percentage: number }[]>
+    React.SetStateAction<{ id: number; volume: number; percentage: number }[]>
   >;
-  currentDrink: { id: string; volume: number; percentage: number };
+  currentDrink: { id: number; volume: number; percentage: number };
 };
 
 function UserInput({ data, setData, currentDrink }: UserInputProps) {
@@ -34,10 +34,13 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
   }
 
   return (
-    <div id={currentDrink.id}>
-      <label>
-        Volume:
+    <div
+      id={currentDrink.id}
+      className="shadow-md p-2 my-4 mx-auto bg-white rounded-sm w-md max-w-11/12"
+    >
+      <label className="mr-4">
         <input
+          className="border-solid border-black  border rounded-sm p-2 m-2 w-20"
           type="number"
           name="volume"
           inputMode="decimal"
@@ -45,10 +48,11 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
           onSelect={handleSelect}
           onChange={handleChange}
         />
+        ml
       </label>
-      <label>
-        Percentage:
+      <label className="mr-4">
         <input
+          className="border-solid border-black  border rounded-sm p-2 m-2 w-20"
           type="number"
           name="percentage"
           inputMode="decimal"
@@ -56,9 +60,10 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
           onSelect={handleSelect}
           onChange={handleChange}
         />
+        %
       </label>
       <label>
-        Total: {total(currentDrink.volume, currentDrink.percentage)}
+        {total(currentDrink.volume, currentDrink.percentage).toFixed(1)}
       </label>
     </div>
   );
