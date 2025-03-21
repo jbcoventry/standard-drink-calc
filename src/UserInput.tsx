@@ -22,15 +22,20 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setData(
+    setData((data) =>
       data.map((drink) => {
         if (drink.id === currentDrink.id) {
-          return { ...drink, [e.target.name]: e.target.value };
+          return { ...drink, [e.target.name]: Number(e.target.value) };
         } else {
           return drink;
         }
       })
     );
+    setData((data) => data.filter((item) => item.percentage || item.volume));
+    setData((data) => [
+      ...data,
+      { id: `${Date.now()}`, volume: 0, percentage: 0 },
+    ]);
   }
 
   return (
@@ -44,6 +49,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
           type="number"
           name="volume"
           inputMode="decimal"
+          autoComplete="off"
           value={currentDrink.volume}
           onSelect={handleSelect}
           onChange={handleChange}
@@ -56,6 +62,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
           type="number"
           name="percentage"
           inputMode="decimal"
+          autoComplete="off"
           value={currentDrink.percentage}
           onSelect={handleSelect}
           onChange={handleChange}
