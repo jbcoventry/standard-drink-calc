@@ -4,13 +4,14 @@ import total from "./total";
 
 function App() {
   const [data, setData] = useState<
-    { id: string; volume: number; percentage: number }[]
-  >([{ id: `${Date.now()}`, volume: 0, percentage: 0 }]);
+    { id: string; volume: number | ""; percentage: number | "" }[]
+  >([{ id: `${Date.now()}`, volume: "", percentage: "" }]);
   const inputFields = data.map((obj) => (
     <UserInput data={data} setData={setData} currentDrink={obj} key={obj.id} />
   ));
   const grandTotal = data.reduce(
-    (acc, current) => acc + total(current.volume, current.percentage),
+    (acc, current) =>
+      acc + total(Number(current.volume), Number(current.percentage)),
     0
   );
 

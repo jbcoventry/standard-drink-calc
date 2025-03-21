@@ -1,11 +1,13 @@
 import total from "./total";
 
 type UserInputProps = {
-  data: { id: string; volume: number; percentage: number }[];
+  data: { id: string; volume: number | ""; percentage: number | "" }[];
   setData: React.Dispatch<
-    React.SetStateAction<{ id: string; volume: number; percentage: number }[]>
+    React.SetStateAction<
+      { id: string; volume: number | ""; percentage: number | "" }[]
+    >
   >;
-  currentDrink: { id: string; volume: number; percentage: number };
+  currentDrink: { id: string; volume: number | ""; percentage: number | "" };
 };
 
 function UserInput({ data, setData, currentDrink }: UserInputProps) {
@@ -25,7 +27,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
     setData((data) =>
       data.map((drink) => {
         if (drink.id === currentDrink.id) {
-          return { ...drink, [e.target.name]: Number(e.target.value) };
+          return { ...drink, [e.target.name]: e.target.value };
         } else {
           return drink;
         }
@@ -34,7 +36,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
     setData((data) => data.filter((item) => item.percentage || item.volume));
     setData((data) => [
       ...data,
-      { id: `${Date.now()}`, volume: 0, percentage: 0 },
+      { id: `${Date.now()}`, volume: "", percentage: "" },
     ]);
   }
 
@@ -70,7 +72,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
         %
       </label>
       <label>
-        {total(currentDrink.volume, currentDrink.percentage).toFixed(1)}
+        {total(Number(currentDrink.volume), Number(currentDrink.percentage)).toFixed(1)}
       </label>
     </div>
   );
