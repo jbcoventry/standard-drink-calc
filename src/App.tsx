@@ -1,11 +1,12 @@
 import { useState } from "react";
 import UserInput from "./UserInput";
 import total from "./total";
+import { drinkType } from "./types";
 
 function App() {
-  const [data, setData] = useState<
-    { id: string; volume: number | ""; percentage: number | "" }[]
-  >([{ id: `${Date.now()}`, volume: "", percentage: "" }]);
+  const [data, setData] = useState<drinkType[]>([
+    { id: `${Date.now()}`, volume: "", percentage: "" },
+  ]);
   const inputFields = data.map((obj) => (
     <UserInput data={data} setData={setData} currentDrink={obj} key={obj.id} />
   ));

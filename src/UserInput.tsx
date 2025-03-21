@@ -1,13 +1,10 @@
 import total from "./total";
+import { drinkType } from "./types";
 
 type UserInputProps = {
-  data: { id: string; volume: number | ""; percentage: number | "" }[];
-  setData: React.Dispatch<
-    React.SetStateAction<
-      { id: string; volume: number | ""; percentage: number | "" }[]
-    >
-  >;
-  currentDrink: { id: string; volume: number | ""; percentage: number | "" };
+  data: drinkType[];
+  setData: React.Dispatch<React.SetStateAction<drinkType[]>>;
+  currentDrink: drinkType;
 };
 
 function UserInput({ data, setData, currentDrink }: UserInputProps) {
@@ -72,7 +69,10 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
         %
       </label>
       <label>
-        {total(Number(currentDrink.volume), Number(currentDrink.percentage)).toFixed(1)}
+        {total(
+          Number(currentDrink.volume),
+          Number(currentDrink.percentage)
+        ).toFixed(1)}
       </label>
     </div>
   );
