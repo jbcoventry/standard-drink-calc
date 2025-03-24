@@ -74,6 +74,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
           Number(currentDrink.percentage)
         ).toFixed(1)}
       </label>
+      <button></button>
     </div>
   );
 }
