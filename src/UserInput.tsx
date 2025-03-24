@@ -37,14 +37,18 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
     ]);
   }
 
+  function handleClick() {
+    setData((data) => data.filter((item) => item.id !== currentDrink.id));
+  }
+
   return (
     <div
       id={currentDrink.id}
       className="shadow-md p-2 my-4 mx-auto bg-white rounded-sm w-md max-w-11/12"
     >
-      <label className="mr-4">
+      <label className="md:mr-4">
         <input
-          className="border-solid border-black  border rounded-sm p-2 m-2 w-20 appearance-none"
+          className="border-solid border-black  border rounded-sm p-2 m-2 w-16 md:w-20 appearance-none"
           type="number"
           name="volume"
           inputMode="decimal"
@@ -55,9 +59,9 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
         />
         ml
       </label>
-      <label className="mr-4">
+      <label className="md:mr-4 mr-2">
         <input
-          className="border-solid border-black  border rounded-sm p-2 m-2 w-20 appearance-none"
+          className="border-solid border-black  border rounded-sm p-2 m-2 w-16 md:w-20 appearance-none"
           type="number"
           name="percentage"
           inputMode="decimal"
@@ -68,13 +72,18 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
         />
         %
       </label>
-      <label>
+      <label className="md:mr-8 mr-2">
         {total(
           Number(currentDrink.volume),
           Number(currentDrink.percentage)
         ).toFixed(1)}
       </label>
-      <button></button>
+      <button
+        className="bg-red-400 rounded-sm cursor-pointer hover:bg-red-500 p-2 m-2"
+        onClick={handleClick}
+      >
+        Remove
+      </button>
     </div>
   );
 }
