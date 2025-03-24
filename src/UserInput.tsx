@@ -41,6 +41,17 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
     setData((data) => data.filter((item) => item.id !== currentDrink.id));
   }
 
+  function DeleteButton() {
+    return (
+      <button
+        className="bg-red-400 rounded-sm cursor-pointer hover:bg-red-500 p-2"
+        onClick={handleClick}
+      >
+        Remove
+      </button>
+    );
+  }
+
   return (
     <div
       id={currentDrink.id}
@@ -78,12 +89,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
           Number(currentDrink.percentage)
         ).toFixed(1)}
       </div>
-      <button
-        className="bg-red-400 rounded-sm cursor-pointer hover:bg-red-500 p-2"
-        onClick={handleClick}
-      >
-        Remove
-      </button>
+      {data.length > 1 ? <DeleteButton /> : <div />}
     </div>
   );
 }
