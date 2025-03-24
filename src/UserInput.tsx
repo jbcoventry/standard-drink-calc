@@ -59,7 +59,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
     >
       <label className="">
         <input
-          className="border-solid border-black  border rounded-sm p-2 m-2 w-16 appearance-none"
+          className="border-solid border-black  border rounded-sm p-2 m-1 w-14 md:w-16 appearance-none"
           type="number"
           name="volume"
           inputMode="decimal"
@@ -72,7 +72,7 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
       </label>
       <label className="">
         <input
-          className="border-solid border-black  border rounded-sm p-2 m-2 w-16 appearance-none"
+          className="border-solid border-black  border rounded-sm p-2 m-1 w-14 md:w-16 appearance-none"
           type="number"
           name="percentage"
           inputMode="decimal"
