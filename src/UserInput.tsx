@@ -44,11 +44,11 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
   return (
     <div
       id={currentDrink.id}
-      className="shadow-md p-2 my-4 mx-auto bg-white rounded-sm w-md max-w-11/12"
+      className="shadow-md p-2 my-4 mx-auto bg-white rounded-sm w-md max-w-11/12 grid grid-cols-4 place-items-center"
     >
-      <label className="md:mr-4">
+      <label className="">
         <input
-          className="border-solid border-black  border rounded-sm p-2 m-2 w-16 md:w-20 appearance-none"
+          className="border-solid border-black  border rounded-sm p-2 m-2 w-16 appearance-none"
           type="number"
           name="volume"
           inputMode="decimal"
@@ -59,9 +59,9 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
         />
         ml
       </label>
-      <label className="md:mr-4 mr-2">
+      <label className="">
         <input
-          className="border-solid border-black  border rounded-sm p-2 m-2 w-16 md:w-20 appearance-none"
+          className="border-solid border-black  border rounded-sm p-2 m-2 w-16 appearance-none"
           type="number"
           name="percentage"
           inputMode="decimal"
@@ -72,14 +72,14 @@ function UserInput({ data, setData, currentDrink }: UserInputProps) {
         />
         %
       </label>
-      <label className="md:mr-8 mr-2">
+      <div className="">
         {total(
           Number(currentDrink.volume),
           Number(currentDrink.percentage)
         ).toFixed(1)}
-      </label>
+      </div>
       <button
-        className="bg-red-400 rounded-sm cursor-pointer hover:bg-red-500 p-2 m-2"
+        className="bg-red-400 rounded-sm cursor-pointer hover:bg-red-500 p-2"
         onClick={handleClick}
       >
         Remove
